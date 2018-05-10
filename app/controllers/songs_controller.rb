@@ -25,7 +25,6 @@ class SongsController < ApplicationController
   end
 
   def new
-    byebug
     if Preference.first.allow_create_songs == false
       redirect_to songs_path
     else
