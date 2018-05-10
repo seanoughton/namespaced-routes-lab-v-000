@@ -1,7 +1,5 @@
 class SongsController < ApplicationController
-  before_action :set_preferences, only: [:index, :new]
   def index
-    byebug
     if params[:artist_id]
       @artist = Artist.find_by(id: params[:artist_id])
       if @artist.nil?
@@ -27,9 +25,7 @@ class SongsController < ApplicationController
   end
 
   def new
-    byebug
-    if @preference.allow_create_songs == false
-    #if Preference.first.allow_create_songs == false
+    if Preference.first.allow_create_songs == false
       redirect_to songs_path
     else
       @song = Song.new
